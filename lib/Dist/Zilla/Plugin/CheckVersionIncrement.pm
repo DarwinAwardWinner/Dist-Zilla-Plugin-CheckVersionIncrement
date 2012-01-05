@@ -10,6 +10,17 @@ use LWP::UserAgent;
 use version ();
 use JSON::PP;
 
+=method before_release
+
+This method checks the version of the dist to be released against the
+latest version already indexed on CPAN. If the version to be released
+is not greater than the indexed version, it prompts the user to
+confirm the release.
+
+This method does nothing if the dist is not indexed at all.
+
+=cut
+
 # Lots of this is cargo-culted from DZP::CheckPrereqsIndexed
 sub before_release {
     my ($self) = @_;
