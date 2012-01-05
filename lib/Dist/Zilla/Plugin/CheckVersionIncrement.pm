@@ -77,3 +77,6 @@ Please report any bugs or feature requests to
 C<rct+perlbug@thompsonclan.org>.
 
 =head1 SEE ALSO
+
+=for :list
+* L<Dist::Zilla::Plugin::CheckPrereqsIndexed> - Used as the example for getting the indexed version of a dist
