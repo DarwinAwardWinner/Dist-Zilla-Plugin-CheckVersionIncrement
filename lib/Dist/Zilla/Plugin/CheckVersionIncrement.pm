@@ -45,8 +45,17 @@ sub before_release {
 
     if ($indexed_version) {
         return if $indexed_version < $pkg_version;
+
+        my $indexed_description;
+        if ($indexed_version == $pkg_version) {
+            $indexed_description = "the same version ($indexed_version)";
+        }
+        else {
+            $indexed_description = "a higher version ($indexed_version)";
+        }
+
         return if $self->zilla->chrome->prompt_yn(
-            "A higher version number is already indexed on CPAN. Release anyway?",
+            "You are releasing version $pkg_version but $indexed_description is already indexed on CPAN. Release anyway?",
             { default => 0 }
         );
         $self->log_fatal("aborting release because a higher version number is already indexed on CPAN");
