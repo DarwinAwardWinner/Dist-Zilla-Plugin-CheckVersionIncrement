@@ -80,6 +80,11 @@ This plugin prevents your from releasing a distribution unless it has
 a version number I<greater> than the latest version already indexed on
 CPAN.
 
+Note that this plugin doesn't check whether your release method
+actually involves the CPAN or not. So if you don't use the
+UploadToCPAN plugin for releases, then you probably shouldn't use this
+one either.
+
 =head1 BUGS AND LIMITATIONS
 
 Please report any bugs or feature requests to
