@@ -20,8 +20,6 @@ if (!$res->is_success) {
 # be this one.
 my $module_text = <<'MODULE';
 package Dist::Zilla::Plugin::CheckVersionIncrement;
-# Lowest version possible
-$Dist::Zilla::Plugin::CheckVersionIncrement::VERSION = '0.000001';
 1;
 MODULE
 
