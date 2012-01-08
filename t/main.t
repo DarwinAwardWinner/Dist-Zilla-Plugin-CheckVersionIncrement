@@ -45,6 +45,29 @@ my $tzil_minversion = Builder->from_config(
     }
 );
 
-throws_ok { $tzil_minversion->release; } qr/aborting release of version [0-9._]+ because a higher version \([0-9._]+\) is already indexed on CPAN/, 'Aborted release when a higher version was indexed';
+my $tzil_maxversion = Builder->from_config(
+    { dist_root => 'corpus/empty' },
+    {
+        add_files => {
+            'source/Dist/Zilla/Plugin/CheckVersionIncrement.pm' => $module_text,
+            'source/dist.ini' => dist_ini({
+                    name     => 'Dist-Zilla-Plugin-CheckVersionIncrement',
+                    abstract => 'Testing CheckVersionIncrement',
+                    version  => '999.999999',
+                    author   => 'E. Xavier Ample <example@example.org>',
+                    license  => 'Perl_5',
+                    copyright_holder => 'E. Xavier Ample',
+                }, (
+                    'CheckVersionIncrement',
+                    'GatherDir',
+                    'FakeRelease',
+                )
+            ),
+        },
+    }
+);
 
-done_testing(1);
+throws_ok { $tzil_minversion->release; } qr/aborting release of version [0-9._]+ because a higher version \([0-9._]+\) is already indexed on CPAN/, 'Aborted release when a higher version was indexed';
+lives_ok { $tzil_maxversion->release; } 'Allowed release when a lower version was indexed';
+
+done_testing(2);
