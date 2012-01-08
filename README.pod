@@ -6,7 +6,7 @@ Dist::Zilla::Plugin::CheckVersionIncrement - Prevent a release unless the versio
 
 =head1 VERSION
 
-version 0.120070
+version 0.120080
 
 =head1 SYNOPSIS
 

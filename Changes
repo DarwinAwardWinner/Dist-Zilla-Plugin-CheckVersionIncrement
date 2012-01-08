@@ -2,8 +2,13 @@ Revision history for Perl extension {{$dist->name}}
 
 {{$NEXT}}
 
+0.120080  2012-01-08 01:27:38 PST8PDT
+    - Error message now reports version numbers
+    - Add another test
+
 0.120070  2012-01-06 23:14:26 PST8PDT
     - Add a test
+
 
 0.120050  2012-01-05 11:11:57 PST8PDT
     - Initial CPAN release
