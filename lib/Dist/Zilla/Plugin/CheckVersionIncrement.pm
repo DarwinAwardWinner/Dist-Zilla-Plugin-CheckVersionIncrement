@@ -58,7 +58,7 @@ sub before_release {
             "You are releasing version $pkg_version but $indexed_description is already indexed on CPAN. Release anyway?",
             { default => 0 }
         );
-        $self->log_fatal("aborting release because a higher version number is already indexed on CPAN");
+        $self->log_fatal("aborting release of version $pkg_version because $indexed_description is already indexed on CPAN");
     }
     else {
         $self->log("Dist not indexed on CPAN. Skipping check for incremented version.");

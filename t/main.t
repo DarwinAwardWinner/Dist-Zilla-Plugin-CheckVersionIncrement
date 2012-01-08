@@ -23,7 +23,7 @@ package Dist::Zilla::Plugin::CheckVersionIncrement;
 1;
 MODULE
 
-my $tzil = Builder->from_config(
+my $tzil_minversion = Builder->from_config(
     { dist_root => 'corpus/empty' },
     {
         add_files => {
@@ -45,6 +45,6 @@ my $tzil = Builder->from_config(
     }
 );
 
-throws_ok { $tzil->release; } qr/aborting release because a higher version number is already indexed on CPAN/, 'Aborted as expected';
+throws_ok { $tzil_minversion->release; } qr/aborting release of version [0-9._]+ because a higher version \([0-9._]+\) is already indexed on CPAN/, 'Aborted release when a higher version was indexed';
 
 done_testing(1);
