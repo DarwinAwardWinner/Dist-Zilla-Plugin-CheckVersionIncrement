@@ -7,14 +7,24 @@ use warnings;
 use autodie;
 use Test::DZil;
 use LWP::UserAgent;
+use Encode qw(encode_utf8);
+use JSON::PP;
 
-# Check if we can get to CPAN, skip if not
+# Check if we can get to CPAN index, skip if not
 my $ua = LWP::UserAgent->new(keep_alive => 1);
 $ua->env_proxy;
 my $res = $ua->get("http://cpanidx.org/cpanidx/json/mod/Dist-Zilla-Plugin-CheckVersionIncrement");
 if (!$res->is_success) {
     plan skip_all => 'Cannot access CPAN index';
 }
+# Check that CPAN index returns something that contains a version
+# number, skip if not
+my $yaml_octets = encode_utf8($res->decoded_content);
+my $payload = JSON::PP->new->decode($yaml_octets);
+if (!(@$payload && $payload->[0]{mod_vers})) {
+    plan skip_all => 'CPAN index did not return a version number';
+}
+
 
 # This needs to be the name of an actual module on CPAN. May as well
 # be this one.
