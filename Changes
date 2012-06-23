@@ -2,6 +2,10 @@ Revision history for Perl extension {{$dist->name}}
 
 {{$NEXT}}
 
+0.121750  2012-06-23 11:31:55 America/Los_Angeles
+    - Skip tests when CPAN index web service returns valid but empty
+      JSON
+
 0.120080  2012-01-08 01:27:38 PST8PDT
     - Error message now reports version numbers
     - Add another test
